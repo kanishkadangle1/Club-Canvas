@@ -62,9 +62,10 @@ function LoginPage() {
   const google = async () => {
     setBusy(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/dashboard" });
-      if (result.error) {
-        toast.error(typeof result.error === "string" ? result.error : (result.error as Error).message);
+      const result: any = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/dashboard" });
+      if (result?.error) {
+        const err = result.error;
+        toast.error(typeof err === "string" ? err : (err?.message ?? "Sign-in failed"));
       }
     } finally {
       setBusy(false);
