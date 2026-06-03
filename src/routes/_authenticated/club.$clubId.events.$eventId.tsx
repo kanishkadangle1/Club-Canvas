@@ -166,12 +166,12 @@ function EventWorkspace() {
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
           >
-            {tab === "overview" && <OverviewTab ev={ev} sessions={sessions} photos={photos} docs={docs} attendanceRate={attendanceRate} onJump={setTab} />}
+            {tab === "overview" && <OverviewTab ev={ev ?? null} sessions={sessions} photos={photos} docs={docs} attendanceRate={attendanceRate} onJump={setTab} />}
             {tab === "timeline" && <TimelineTab clubId={clubId} eventId={eventId} userId={user!.id} sessions={sessions} qc={qc} />}
             {tab === "media" && <MediaTab clubId={clubId} eventId={eventId} userId={user!.id} photos={photos} qc={qc} />}
             {tab === "documents" && <DocumentsTab clubId={clubId} docs={docs} />}
             {tab === "team" && <AttendanceTab clubId={clubId} eventId={eventId} userId={user!.id} attendees={attendees} qc={qc} />}
-            {tab === "insights" && <InsightsTab ev={ev} sessions={sessions} attendees={attendees} photos={photos} clubId={clubId} />}
+            {tab === "insights" && <InsightsTab ev={ev ?? null} sessions={sessions} attendees={attendees} photos={photos} clubId={clubId} />}
           </motion.div>
         </AnimatePresence>
       </div>
