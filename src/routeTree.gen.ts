@@ -15,6 +15,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedClubClubIdIndexRouteImport } from './routes/_authenticated/club.$clubId.index'
 import { Route as AuthenticatedClubClubIdDocumentsRouteImport } from './routes/_authenticated/club.$clubId.documents'
+import { Route as AuthenticatedClubClubIdEventsIndexRouteImport } from './routes/_authenticated/club.$clubId.events.index'
+import { Route as AuthenticatedClubClubIdEventsEventIdRouteImport } from './routes/_authenticated/club.$clubId.events.$eventId'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -47,6 +49,18 @@ const AuthenticatedClubClubIdDocumentsRoute =
     path: '/club/$clubId/documents',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedClubClubIdEventsIndexRoute =
+  AuthenticatedClubClubIdEventsIndexRouteImport.update({
+    id: '/club/$clubId/events/',
+    path: '/club/$clubId/events/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedClubClubIdEventsEventIdRoute =
+  AuthenticatedClubClubIdEventsEventIdRouteImport.update({
+    id: '/club/$clubId/events/$eventId',
+    path: '/club/$clubId/events/$eventId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/club/$clubId/documents': typeof AuthenticatedClubClubIdDocumentsRoute
   '/club/$clubId/': typeof AuthenticatedClubClubIdIndexRoute
+  '/club/$clubId/events/$eventId': typeof AuthenticatedClubClubIdEventsEventIdRoute
+  '/club/$clubId/events/': typeof AuthenticatedClubClubIdEventsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,6 +77,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/club/$clubId/documents': typeof AuthenticatedClubClubIdDocumentsRoute
   '/club/$clubId': typeof AuthenticatedClubClubIdIndexRoute
+  '/club/$clubId/events/$eventId': typeof AuthenticatedClubClubIdEventsEventIdRoute
+  '/club/$clubId/events': typeof AuthenticatedClubClubIdEventsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,6 +88,8 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/club/$clubId/documents': typeof AuthenticatedClubClubIdDocumentsRoute
   '/_authenticated/club/$clubId/': typeof AuthenticatedClubClubIdIndexRoute
+  '/_authenticated/club/$clubId/events/$eventId': typeof AuthenticatedClubClubIdEventsEventIdRoute
+  '/_authenticated/club/$clubId/events/': typeof AuthenticatedClubClubIdEventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,6 +99,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/club/$clubId/documents'
     | '/club/$clubId/'
+    | '/club/$clubId/events/$eventId'
+    | '/club/$clubId/events/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -86,6 +108,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/club/$clubId/documents'
     | '/club/$clubId'
+    | '/club/$clubId/events/$eventId'
+    | '/club/$clubId/events'
   id:
     | '__root__'
     | '/'
@@ -94,6 +118,8 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/club/$clubId/documents'
     | '/_authenticated/club/$clubId/'
+    | '/_authenticated/club/$clubId/events/$eventId'
+    | '/_authenticated/club/$clubId/events/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -146,6 +172,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClubClubIdDocumentsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/club/$clubId/events/': {
+      id: '/_authenticated/club/$clubId/events/'
+      path: '/club/$clubId/events'
+      fullPath: '/club/$clubId/events/'
+      preLoaderRoute: typeof AuthenticatedClubClubIdEventsIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/club/$clubId/events/$eventId': {
+      id: '/_authenticated/club/$clubId/events/$eventId'
+      path: '/club/$clubId/events/$eventId'
+      fullPath: '/club/$clubId/events/$eventId'
+      preLoaderRoute: typeof AuthenticatedClubClubIdEventsEventIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -153,12 +193,18 @@ interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedClubClubIdDocumentsRoute: typeof AuthenticatedClubClubIdDocumentsRoute
   AuthenticatedClubClubIdIndexRoute: typeof AuthenticatedClubClubIdIndexRoute
+  AuthenticatedClubClubIdEventsEventIdRoute: typeof AuthenticatedClubClubIdEventsEventIdRoute
+  AuthenticatedClubClubIdEventsIndexRoute: typeof AuthenticatedClubClubIdEventsIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedClubClubIdDocumentsRoute: AuthenticatedClubClubIdDocumentsRoute,
   AuthenticatedClubClubIdIndexRoute: AuthenticatedClubClubIdIndexRoute,
+  AuthenticatedClubClubIdEventsEventIdRoute:
+    AuthenticatedClubClubIdEventsEventIdRoute,
+  AuthenticatedClubClubIdEventsIndexRoute:
+    AuthenticatedClubClubIdEventsIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

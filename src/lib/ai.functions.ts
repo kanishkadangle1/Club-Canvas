@@ -11,6 +11,13 @@ const Input = z.object({
     "sponsorship",
     "timeline_to_report",
     "enhance",
+    "event_report",
+    "social_linkedin",
+    "social_instagram",
+    "appreciation",
+    "highlights",
+    "quality_insights",
+    "summary",
   ]),
   brief: z.string().min(1).max(8000),
   clubName: z.string().min(1).max(200).optional(),
@@ -23,6 +30,13 @@ const SYSTEM_PROMPTS: Record<string, string> = {
   sponsorship: "You are an expert at writing sponsorship proposals from college clubs to local businesses. Produce a polished proposal: Introduction, Event details, Audience reach, Sponsorship tiers, Benefits, Call to action. Use Markdown.",
   timeline_to_report: "You are converting an event timeline (rough chronological notes) into a polished professional event report. Keep all facts but expand them into formal prose with sections. Use Markdown.",
   enhance: "You are enhancing the user's existing draft document. Improve clarity, professional tone, structure, and flow without changing the core meaning. Return the improved Markdown only.",
+  event_report: "You are an expert at writing professional post-event reports for college clubs. Given event metadata, schedule, speakers, and attendance, produce a polished Markdown report with sections: Executive Summary, Event Overview, Schedule Highlights, Key Speakers & Sessions, Attendance & Engagement, Outcomes, Acknowledgements.",
+  social_linkedin: "You are a social media expert. Write a polished, professional LinkedIn post (180-280 words) celebrating the event. Include 3-5 relevant hashtags at the end. Tone: proud, professional, inspiring.",
+  social_instagram: "You are a social media expert. Write a vibrant Instagram caption (90-150 words) for the event with line breaks, 1-2 emojis per paragraph, and 8-12 trendy hashtags at the end.",
+  appreciation: "You are writing a formal appreciation/thank-you letter from a college club to a speaker, guest, or sponsor. Produce a warm yet professional Markdown letter with proper salutation, body, and signature block.",
+  highlights: "You generate a concise, scannable bullet-list of 5-8 event highlights in Markdown. Each bullet is one strong sentence focusing on outcomes, moments, or numbers.",
+  quality_insights: "You are an AI event coach. Analyze the event and produce a Markdown report with: Overall Quality Score (out of 100), Strengths (bullets), Areas to Improve (bullets), and 3 Recommendations for next time. Be specific and honest.",
+  summary: "Produce a concise 3-4 sentence executive summary of the event in plain prose.",
 };
 
 export const generateDocument = createServerFn({ method: "POST" })

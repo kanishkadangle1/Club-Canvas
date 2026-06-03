@@ -127,6 +127,114 @@ export type Database = {
           },
         ]
       }
+      event_attendees: {
+        Row: {
+          added_by: string
+          attended: boolean
+          checked_in_at: string | null
+          club_id: string
+          created_at: string
+          email: string | null
+          event_id: string
+          id: string
+          name: string
+        }
+        Insert: {
+          added_by: string
+          attended?: boolean
+          checked_in_at?: string | null
+          club_id: string
+          created_at?: string
+          email?: string | null
+          event_id: string
+          id?: string
+          name: string
+        }
+        Update: {
+          added_by?: string
+          attended?: boolean
+          checked_in_at?: string | null
+          club_id?: string
+          created_at?: string
+          email?: string | null
+          event_id?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_attendees_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_attendees_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      event_sessions: {
+        Row: {
+          club_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          end_time: string | null
+          event_id: string
+          id: string
+          order_index: number
+          speaker: string | null
+          start_time: string | null
+          title: string
+        }
+        Insert: {
+          club_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          end_time?: string | null
+          event_id: string
+          id?: string
+          order_index?: number
+          speaker?: string | null
+          start_time?: string | null
+          title: string
+        }
+        Update: {
+          club_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          end_time?: string | null
+          event_id?: string
+          id?: string
+          order_index?: number
+          speaker?: string | null
+          start_time?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_sessions_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_sessions_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
           club_id: string
