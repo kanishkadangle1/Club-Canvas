@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Logo } from "@/components/Logo";
 import {
   LayoutDashboard, Wand2, Image as ImageIcon, BarChart3, Users, FileText,
-  LogOut, Plus, ChevronDown, Sparkles
+  LogOut, Plus, ChevronDown, Sparkles, CalendarDays,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -45,6 +45,7 @@ export function AppShell({
   const nav = clubId
     ? [
         { to: `/club/${clubId}`, icon: LayoutDashboard, label: "Overview", exact: true },
+        { to: `/club/${clubId}/events`, icon: CalendarDays, label: "Events" },
         { to: `/club/${clubId}/generator`, icon: Wand2, label: "AI Studio" },
         { to: `/club/${clubId}/documents`, icon: FileText, label: "Documents" },
         { to: `/club/${clubId}/gallery`, icon: ImageIcon, label: "Gallery" },
