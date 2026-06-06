@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { AppShell } from "@/components/AppShell";
 import { Skeleton } from "@/components/ui/skeleton";
 import { editorAssist } from "@/lib/editor-ai.functions";
-import { exportPDF, exportDOCX, renderMarkdown } from "@/lib/export-utils";
+import { exportPDF, exportDOCX, renderMarkdown, sanitizeHtml } from "@/lib/export-utils";
 import { toast } from "sonner";
 import {
   FileText, Plus, Search, Sparkles, Bold, Italic, List, Heading1, Heading2,
@@ -218,7 +218,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
   // Convert html back to plain markdown-ish on input (we store HTML in content)
   const onInput = () => {
     if (!editorRef.current) return;
-    setContent(editorRef.current.innerHTML);
+    setContent(sanitizeHtml(editorRef.current.innerHTML));
   };
 
   const exec = (cmd: string, val?: string) => { document.execCommand(cmd, false, val); editorRef.current?.focus(); onInput(); };
@@ -247,7 +247,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
   const onDoExport = (kind: "pdf" | "docx") => {
     if (kind === "pdf") return exportPDF(title);
     // For DOCX, strip HTML to markdown-ish text
-    const tmp = document.createElement("div"); tmp.innerHTML = content;
+    const tmp = document.createElement("div"); tmp.innerHTML = sanitizeHtml(content);
     const md = htmlToMarkdown(tmp);
     exportDOCX(title, md);
   };
@@ -338,7 +338,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
                   {versionsRef.current.length === 0 ? (
                     <div className="text-xs text-muted-foreground">Edits will appear here as you work.</div>
                   ) : versionsRef.current.map((v, i) => (
-                    <button key={i} onClick={() => { setContent(v.content); if (editorRef.current) editorRef.current.innerHTML = v.content; setShowHistory(false); }}
+                    <button key={i} onClick={() => { const safe = sanitizeHtml(v.content); setContent(safe); if (editorRef.current) editorRef.current.innerHTML = safe; setShowHistory(false); }}
                       className="w-full text-left p-2 rounded-lg hover:bg-white/[0.05] transition">
                       <div className="text-xs font-medium">{v.at.toLocaleTimeString()}</div>
                       <div className="text-[10px] text-muted-foreground">Restore this version</div>
@@ -391,7 +391,7 @@ function AIPanel({ doc, clubId }: { doc: Doc; clubId: string }) {
   const insertBelow = async () => {
     const editorEl = document.querySelector(".prose-doc") as HTMLDivElement | null;
     if (!editorEl) return;
-    editorEl.innerHTML += renderMarkdown("\n\n" + output);
+    editorEl.innerHTML = sanitizeHtml(editorEl.innerHTML + renderMarkdown("\n\n" + output));
     await supabase.from("documents").update({ content: editorEl.innerHTML }).eq("id", doc.id);
     toast.success("Inserted into document");
   };

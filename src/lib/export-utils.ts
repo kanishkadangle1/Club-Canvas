@@ -58,6 +58,13 @@ export async function exportDOCX(title: string, markdown: string) {
   saveAs(blob, `${title.replace(/[^a-z0-9-_ ]/gi, "_")}.docx`);
 }
 
+import DOMPurify from "dompurify";
+
 export function renderMarkdown(md: string): string {
-  return marked.parse(md, { async: false }) as string;
+  const raw = marked.parse(md ?? "", { async: false }) as string;
+  return DOMPurify.sanitize(raw, { USE_PROFILES: { html: true } });
+}
+
+export function sanitizeHtml(html: string): string {
+  return DOMPurify.sanitize(html ?? "", { USE_PROFILES: { html: true } });
 }
