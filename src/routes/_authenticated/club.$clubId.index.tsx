@@ -308,7 +308,7 @@ function ClubDashboard() {
                   className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-[var(--accent-purple)]/30 to-[var(--accent-blue)]/30 ring-1 ring-white/10 relative group"
                 >
                   {p?.url ? (
-                    <img src={p.url} alt={p.caption ?? "Event"} className="size-full object-cover transition group-hover:scale-110" />
+                    <img src={p.url} alt={p.caption ?? ""} className="size-full object-cover transition group-hover:scale-110" />
                   ) : (
                     <div className="size-full flex items-center justify-center text-muted-foreground"><ImageIcon className="size-5" /></div>
                   )}

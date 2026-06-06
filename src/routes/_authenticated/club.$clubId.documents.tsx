@@ -236,7 +236,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
       if (upErr) throw upErr;
       const { data } = supabase.storage.from("club-photos").getPublicUrl(path);
       const url = data.publicUrl;
-      document.execCommand("insertHTML", false, `<img src="${url}" alt="upload" style="max-width:100%;border-radius:12px;margin:8px 0" />`);
+      document.execCommand("insertHTML", false, `<img src="${url}" alt="" style="max-width:100%;border-radius:12px;margin:8px 0" />`);
       onInput();
       // Also save as photo record
       await supabase.from("photos").insert({ club_id: clubId, url, uploaded_by: user!.id });
