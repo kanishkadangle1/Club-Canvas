@@ -218,7 +218,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
   // Convert html back to plain markdown-ish on input (we store HTML in content)
   const onInput = () => {
     if (!editorRef.current) return;
-    setContent(editorRef.current.innerHTML);
+    setContent(sanitizeHtml(editorRef.current.innerHTML));
   };
 
   const exec = (cmd: string, val?: string) => { document.execCommand(cmd, false, val); editorRef.current?.focus(); onInput(); };
