@@ -247,7 +247,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
   const onDoExport = (kind: "pdf" | "docx") => {
     if (kind === "pdf") return exportPDF(title);
     // For DOCX, strip HTML to markdown-ish text
-    const tmp = document.createElement("div"); tmp.innerHTML = content;
+    const tmp = document.createElement("div"); tmp.innerHTML = sanitizeHtml(content);
     const md = htmlToMarkdown(tmp);
     exportDOCX(title, md);
   };
