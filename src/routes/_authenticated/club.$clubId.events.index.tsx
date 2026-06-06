@@ -9,7 +9,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/club/$clubId/events/")({
-  head: () => ({ meta: [{ title: "Events — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Events — Club Documentor" },
+      { name: "description", content: "Plan and document club events — timelines, attendees, photos, and AI-generated reports, captions, and highlights in one place." },
+      { property: "og:title", content: "Events — Club Documentor" },
+      { property: "og:description", content: "Plan, run, and document every club event with AI assistance." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: EventsPage,
 });
 

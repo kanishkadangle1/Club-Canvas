@@ -1,0 +1,9 @@
+# Club Documentor
+
+> AI-powered documentation workspace for college clubs and student organizations — generate reports, run events, and collaborate on documents.
+
+Club Documentor helps student clubs automate paperwork: event reports, proposals, meeting minutes, social captions, and appreciation letters, all from one collaborative workspace with realtime editing and PDF/DOCX export.
+
+## Pages
+
+- [Home](/): Product overview, features, pricing, and FAQ.

@@ -8,7 +8,15 @@ import { toast } from "sonner";
 import { Plus, FileText, Calendar, Users, ArrowRight, Sparkles, X } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Dashboard — Club Documentor" },
+      { name: "description", content: "Your Club Documentor dashboard — switch between clubs, jump into events, and pick up recent documents." },
+      { property: "og:title", content: "Dashboard — Club Documentor" },
+      { property: "og:description", content: "Switch between clubs and pick up where you left off." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: Dashboard,
 });
 

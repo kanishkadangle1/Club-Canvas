@@ -16,7 +16,15 @@ import { generateDocument } from "@/lib/ai.functions";
 import { renderMarkdown, exportDOCX } from "@/lib/export-utils";
 
 export const Route = createFileRoute("/_authenticated/club/$clubId/events/$eventId")({
-  head: () => ({ meta: [{ title: "Event Workspace — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Event Workspace — Club Documentor" },
+      { name: "description", content: "Manage an event workspace with timeline, media gallery, attendance, and AI-generated reports, captions, and appreciation letters." },
+      { property: "og:title", content: "Event Workspace — Club Documentor" },
+      { property: "og:description", content: "Run an event end-to-end with AI documentation built in." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: EventWorkspace,
 });
 

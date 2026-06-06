@@ -8,11 +8,38 @@ import {
   Bot, Layers, Rocket, Star,
 } from "lucide-react";
 
+const FAQ_ITEMS = [
+  { q: "What is Club Documentor?", a: "An AI-powered documentation workspace built specifically for college clubs — generate reports, manage events, collaborate, and store everything in one place." },
+  { q: "Is it really free for clubs?", a: "Yes. The Starter plan is free forever for small clubs. Upgrade to Pro when your team grows or needs unlimited AI generations." },
+  { q: "Do you support multiple clubs under one account?", a: "Absolutely. Each user can join or create multiple workspaces with isolated members, documents and events." },
+  { q: "What AI models do you use?", a: "We use top-tier large language models tuned with templates for student-organization documents. No setup or API key required." },
+  { q: "Can we export documents?", a: "Yes — every document exports to PDF and DOCX with one click, ready to share with faculty or sponsors." },
+  { q: "Is our data private?", a: "Your workspace is yours alone. Role-based access controls and row-level security keep every club's data isolated." },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Club Documentor — AI Documentation Workspace for Clubs & Organizations" },
-      { name: "description", content: "The AI-powered workspace where college clubs generate reports, run events, collaborate in realtime, and document everything beautifully." },
+      { title: "Club Documentor — AI Workspace for Clubs" },
+      { name: "description", content: "AI-powered workspace where college clubs generate reports, run events, collaborate in realtime, and document everything beautifully." },
+      { property: "og:title", content: "Club Documentor — AI Workspace for Clubs" },
+      { property: "og:description", content: "AI-powered workspace where college clubs generate reports, run events, and document everything beautifully." },
+      { property: "og:url", content: "https://guild-docs-ai-club-documentor.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://guild-docs-ai-club-documentor.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_ITEMS.map((it) => ({
+            "@type": "Question",
+            name: it.q,
+            acceptedAnswer: { "@type": "Answer", text: it.a },
+          })),
+        }),
+      },
     ],
   }),
   component: Landing,
@@ -530,14 +557,7 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 function FAQ() {
-  const items = [
-    { q: "What is Club Documentor?", a: "An AI-powered documentation workspace built specifically for college clubs — generate reports, manage events, collaborate, and store everything in one place." },
-    { q: "Is it really free for clubs?", a: "Yes. The Starter plan is free forever for small clubs. Upgrade to Pro when your team grows or needs unlimited AI generations." },
-    { q: "Do you support multiple clubs under one account?", a: "Absolutely. Each user can join or create multiple workspaces with isolated members, documents and events." },
-    { q: "What AI models do you use?", a: "We use top-tier large language models tuned with templates for student-organization documents. No setup or API key required." },
-    { q: "Can we export documents?", a: "Yes — every document exports to PDF and DOCX with one click, ready to share with faculty or sponsors." },
-    { q: "Is our data private?", a: "Your workspace is yours alone. Role-based access controls and row-level security keep every club's data isolated." },
-  ];
+  const items = FAQ_ITEMS;
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="py-32 px-6">
