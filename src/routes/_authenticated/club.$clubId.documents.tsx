@@ -338,7 +338,7 @@ function Editor({ doc, clubId, onAiToggle }: { doc: Doc; clubId: string; onAiTog
                   {versionsRef.current.length === 0 ? (
                     <div className="text-xs text-muted-foreground">Edits will appear here as you work.</div>
                   ) : versionsRef.current.map((v, i) => (
-                    <button key={i} onClick={() => { setContent(v.content); if (editorRef.current) editorRef.current.innerHTML = v.content; setShowHistory(false); }}
+                    <button key={i} onClick={() => { const safe = sanitizeHtml(v.content); setContent(safe); if (editorRef.current) editorRef.current.innerHTML = safe; setShowHistory(false); }}
                       className="w-full text-left p-2 rounded-lg hover:bg-white/[0.05] transition">
                       <div className="text-xs font-medium">{v.at.toLocaleTimeString()}</div>
                       <div className="text-[10px] text-muted-foreground">Restore this version</div>
