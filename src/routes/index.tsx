@@ -557,14 +557,7 @@ function Pricing() {
 
 /* ---------- FAQ ---------- */
 function FAQ() {
-  const items = [
-    { q: "What is Club Documentor?", a: "An AI-powered documentation workspace built specifically for college clubs — generate reports, manage events, collaborate, and store everything in one place." },
-    { q: "Is it really free for clubs?", a: "Yes. The Starter plan is free forever for small clubs. Upgrade to Pro when your team grows or needs unlimited AI generations." },
-    { q: "Do you support multiple clubs under one account?", a: "Absolutely. Each user can join or create multiple workspaces with isolated members, documents and events." },
-    { q: "What AI models do you use?", a: "We use top-tier large language models tuned with templates for student-organization documents. No setup or API key required." },
-    { q: "Can we export documents?", a: "Yes — every document exports to PDF and DOCX with one click, ready to share with faculty or sponsors." },
-    { q: "Is our data private?", a: "Your workspace is yours alone. Role-based access controls and row-level security keep every club's data isolated." },
-  ];
+  const items = FAQ_ITEMS;
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="py-32 px-6">
