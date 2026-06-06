@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { AppShell } from "@/components/AppShell";
 import { Skeleton } from "@/components/ui/skeleton";
 import { editorAssist } from "@/lib/editor-ai.functions";
-import { exportPDF, exportDOCX, renderMarkdown } from "@/lib/export-utils";
+import { exportPDF, exportDOCX, renderMarkdown, sanitizeHtml } from "@/lib/export-utils";
 import { toast } from "sonner";
 import {
   FileText, Plus, Search, Sparkles, Bold, Italic, List, Heading1, Heading2,
