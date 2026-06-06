@@ -16,7 +16,15 @@ import { AppShell, PrimaryButton } from "@/components/AppShell";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/_authenticated/club/$clubId/")({
-  head: () => ({ meta: [{ title: "Overview — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Club Overview — Club Documentor" },
+      { name: "description", content: "Club overview with upcoming events, recent documents, team activity, and AI-generated reports for your organization." },
+      { property: "og:title", content: "Club Overview — Club Documentor" },
+      { property: "og:description", content: "Upcoming events, recent documents, and AI insights for your club." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: ClubDashboard,
 });
 

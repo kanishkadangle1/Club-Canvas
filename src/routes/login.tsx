@@ -15,7 +15,17 @@ const search = z.object({
 
 export const Route = createFileRoute("/login")({
   validateSearch: search,
-  head: () => ({ meta: [{ title: "Sign in — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Sign in — Club Documentor" },
+      { name: "description", content: "Sign in or create an account to access your Club Documentor AI workspace for reports, events, and collaboration." },
+      { property: "og:title", content: "Sign in — Club Documentor" },
+      { property: "og:description", content: "Access your AI documentation workspace for college clubs." },
+      { property: "og:url", content: "https://guild-docs-ai-club-documentor.lovable.app/login" },
+      { name: "robots", content: "noindex" },
+    ],
+    links: [{ rel: "canonical", href: "https://guild-docs-ai-club-documentor.lovable.app/login" }],
+  }),
   component: LoginPage,
 });
 

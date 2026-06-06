@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /dashboard
+Disallow: /club/
+
+Sitemap: https://guild-docs-ai-club-documentor.lovable.app/sitemap.xml

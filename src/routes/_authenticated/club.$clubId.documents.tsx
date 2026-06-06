@@ -17,7 +17,15 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/club/$clubId/documents")({
-  head: () => ({ meta: [{ title: "Documents — Club Documentor" }] }),
+  head: () => ({
+    meta: [
+      { title: "Documents — Club Documentor" },
+      { name: "description", content: "AI-powered collaborative document editor for clubs with grammar, formatting, summaries, and PDF and DOCX export." },
+      { property: "og:title", content: "Documents — Club Documentor" },
+      { property: "og:description", content: "Collaborative AI document editor for clubs and organizations." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   validateSearch: (s: Record<string, unknown>) => ({ doc: (s.doc as string) || undefined }),
   component: DocumentsEditor,
 });
