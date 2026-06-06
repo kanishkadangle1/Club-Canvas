@@ -338,7 +338,7 @@ function TimelineTab({ clubId, eventId, userId, sessions, qc }: {
                     {s.speaker && <div className="text-xs text-muted-foreground inline-flex items-center gap-1.5 mt-0.5"><Mic2 className="size-3" />{s.speaker}</div>}
                     {s.description && <p className="text-xs text-muted-foreground mt-1.5">{s.description}</p>}
                   </div>
-                  <button onClick={() => remove(s.id)} className="opacity-0 group-hover:opacity-100 transition text-muted-foreground hover:text-red-400">
+                  <button onClick={() => remove(s.id)} aria-label="Delete session" className="opacity-0 group-hover:opacity-100 transition text-muted-foreground hover:text-red-400">
                     <Trash2 className="size-3.5" />
                   </button>
                 </div>
