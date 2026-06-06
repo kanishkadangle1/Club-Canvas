@@ -391,7 +391,7 @@ function AIPanel({ doc, clubId }: { doc: Doc; clubId: string }) {
   const insertBelow = async () => {
     const editorEl = document.querySelector(".prose-doc") as HTMLDivElement | null;
     if (!editorEl) return;
-    editorEl.innerHTML += renderMarkdown("\n\n" + output);
+    editorEl.innerHTML = sanitizeHtml(editorEl.innerHTML + renderMarkdown("\n\n" + output));
     await supabase.from("documents").update({ content: editorEl.innerHTML }).eq("id", doc.id);
     toast.success("Inserted into document");
   };
