@@ -350,18 +350,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_club_role: {
-        Args: {
-          _club: string
-          _roles: Database["public"]["Enums"]["club_role"][]
-          _user: string
-        }
-        Returns: boolean
-      }
-      is_club_member: {
-        Args: { _club: string; _user: string }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
       club_role: "lead" | "coordinator" | "member" | "faculty"
